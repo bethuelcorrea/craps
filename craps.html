@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>CRAPS</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<script type="text/javaScript">
+var dice1 = Math.floor((Math.random() * 6) + 1);//2
+var dice2 = Math.floor((Math.random() * 6) + 1);//2
+
+function play(){
+
+var value = document.getElementById('number').value;
+/*------------------------------------------------------------*/
+//this is the beginning of the game new code
+
+var diceTotal = dice1 + dice2;
+//this will check if you roll a 7 or 11 to win or 2,3,12 to lose
+switch(diceTotal){
+
+case 7:
+var result = document.getElementById("result").innerHTML = "You win $"+value;
+break;
+
+case 11:
+var result = document.getElementById("result").innerHTML = "You win $"+value;
+break;
+
+case 2:
+var result = document.getElementById("result").innerHTML = "Loser! I will take $"+value;
+break;
+
+case 3:
+var result = document.getElementById("result").innerHTML = "Loser! Thank you very much $"+value;
+break;
+
+case 12:
+var result = document.getElementById("result").innerHTML = "I like taking your money $"+value;
+break;
+
+// this cases cover the win or lose aspects of the game.
+default :
+break;
+
+}//end of switch statement.
+if( (diceTotal != 7) || (diceTotal != 11) || (diceTotal != 2) || (dicTotal != 3) || (diceTotal != 12)){
+		var flag = diceTotal; 
+		
+		var result = document.getElementById("result").innerHTML = "<img src='on.png'/>You rolled a "+flag+" roll another "+flag+" to win $"+value+"<br/>"+
+		"<input type='button' value ='Roll Again' onclick ='stage2()'/>";
+		
+		//2nd stage of the game.................. on mode
+		
+
+}
+return flag ;//flag
+// this is the end of the new code-------------------------------->
+}
+function stage2(){
+//this will loop the second section of the game untill you match to win or lose
+var flag = play();
+var dice1Roll2 = Math.floor((Math.random() * 6) + 1);
+var dice2Roll2 = Math.floor((Math.random() * 6) + 1);
+var diceTotal2 = dice1Roll2 + dice2Roll2;
+
+if(flag == diceTotal2){
+var result = document.getElementById("result").innerHTML =  "First Roll "+flag +' Second Roll '+diceTotal2 +" You Win !"+'<br/>'+
+"<input type='button' value ='Start Game' onclick ='startGame()'/>";
+}else if
+(diceTotal2 == 7 || diceTotal2 == 11){
+var result = document.getElementById("result").innerHTML =  "First Roll "+flag +' Second Roll '+diceTotal2 +" You Lose!"+'<br/>'+
+"<input type='button' value ='Start Game' onclick ='startGame()'/>";
+}else if
+(diceTotal2 == 4 || diceTotal2 == 5 || diceTotal2 == 6 || diceTotal2 == 8 || diceTotal2 == 9 || diceTotal2 == 10){
+var result = document.getElementById("result").innerHTML =  "First Roll "+flag +' Second Roll '+diceTotal2 +" Roll again!"+'<br/>'+
+"<input type='button' value ='Roll Again' onclick ='stage3()'/>";//stage2()
+//alert("Roll again");
+stage3();
+}
+
+
+
+}	
+//this function loop the dice roll_______________________.
+function stage3(){
+stage2();
+
+}
+
+function startGame(){
+location.reload();
+
+}
+
+
+
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+<div class="bid">
+Place a Bet<br/>		
+<select id="number">
+	<option value="5">$5.00</option>
+	<option value="10">$10.00</option>
+	<option value="15">$15.00</option>
+	<option value="20">$20.00</option>
+</select>
+ <button type="submit" onclick='play()'>Roll Dice</button>
+		
+</div>
+<p id="result"><img src="off.png"/>Pass Line<br/><img src="dice.png"/></p>
+
+</body>
+
+
+</html>
